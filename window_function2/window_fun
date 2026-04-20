@@ -1,0 +1,7 @@
+SELECT *
+FROM (
+    SELECT *,
+           ROW_NUMBER() OVER (PARTITION BY customer_id ORDER BY amount DESC) AS rn
+    FROM DATA_ENGINEERING.TESTSCHEMA.ORDERS
+)
+WHERE rn <= 2;
